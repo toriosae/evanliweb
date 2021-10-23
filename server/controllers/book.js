@@ -18,7 +18,7 @@ module.exports.displayBookList = (req, res, next) => {
             //console.log(BookList);
 
             res.render('book/list', 
-            {title: 'Books', 
+            {title: 'Contacts', 
             BookList: bookList, 
             displayName: req.user ? req.user.displayName : ''});      
         }
@@ -33,10 +33,9 @@ module.exports.displayAddPage = (req, res, next) => {
 module.exports.processAddPage = (req, res, next) => {
     let newBook = Book({
         "name": req.body.name,
-        "author": req.body.author,
-        "published": req.body.published,
-        "description": req.body.description,
-        "price": req.body.price
+        "number": req.body.number,
+        "email": req.body.email
+       
     });
 
     Book.create(newBook, (err, Book) =>{
@@ -78,10 +77,9 @@ module.exports.processEditPage = (req, res, next) => {
     let updatedBook = Book({
         "_id": id,
         "name": req.body.name,
-        "author": req.body.author,
-        "published": req.body.published,
-        "description": req.body.description,
-        "price": req.body.price
+        "number": req.body.number,
+        "email": req.body.email
+        
     });
 
     Book.updateOne({_id: id}, updatedBook, (err) => {
